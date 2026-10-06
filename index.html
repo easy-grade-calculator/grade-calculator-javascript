@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Grade Calculator</title>
+  <meta name="description" content="A simple JavaScript grade calculator that calculates percentage and letter grade from earned and total points.">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #0f172a;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 18px;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .info {
+      margin-top: 35px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #2563eb;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>JavaScript Grade Calculator</h1>
+
+  <p>
+    Enter the points you earned and the total possible points to calculate
+    your percentage and letter grade.
+  </p>
+
+  <label for="earned">Points Earned</label>
+  <input type="number" id="earned" placeholder="Example: 85">
+
+  <label for="total">Total Points</label>
+  <input type="number" id="total" placeholder="Example: 100">
+
+  <button onclick="calculateGrade()">Calculate Grade</button>
+
+  <div id="result"></div>
+
+  <div class="info">
+
+    <h2>How the Grade Calculator Works</h2>
+
+    <p>
+      The calculator divides the points earned by the total possible points
+      and multiplies the result by 100.
+    </p>
+
+    <p>
+      Formula:
+      <strong>Grade Percentage = (Points Earned ÷ Total Points) × 100</strong>
+    </p>
+
+    <p>
+      For a more complete calculator with additional grading tools, visit
+      <a href="https://easy-gradecalculator.com/grade-calculator/">
+        Easy Grade Calculator
+      </a>.
+    </p>
+
+    <h2>Example</h2>
+
+    <p>
+      If a student earns 85 points out of 100 possible points, the grade
+      percentage is 85%, which is normally considered a B grade.
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+function calculateGrade() {
+
+  const earned = parseFloat(document.getElementById("earned").value);
+  const total = parseFloat(document.getElementById("total").value);
+  const result = document.getElementById("result");
+
+  if (isNaN(earned) || isNaN(total) || total <= 0) {
+    result.innerHTML = "Please enter valid numbers.";
+    return;
+  }
+
+  const percentage = (earned / total) * 100;
+
+  let letterGrade;
+
+  if (percentage >= 90) {
+    letterGrade = "A";
+  } else if (percentage >= 80) {
+    letterGrade = "B";
+  } else if (percentage >= 70) {
+    letterGrade = "C";
+  } else if (percentage >= 60) {
+    letterGrade = "D";
+  } else {
+    letterGrade = "F";
+  }
+
+  result.innerHTML =
+    "Percentage: " + percentage.toFixed(2) + "%<br>" +
+    "Letter Grade: " + letterGrade;
+}
+</script>
+
+</body>
+</html>
